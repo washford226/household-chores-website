@@ -6,7 +6,7 @@ db.run(`
 CREATE TABLE IF NOT EXISTS household (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   household_name TEXT NOT NULL,
-  email TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL, 
   pin INTEGER NOT NULL 
 )`);
@@ -67,17 +67,53 @@ app.listen(PORT, () => {
 
 // Household CRUD operations
 
-// Create a new household
-app.post('/households', (req, res) => {
-  const { household_name, email, password, pin } = req.body;
-  const query = `INSERT INTO household (household_name, email, password, pin) VALUES (?, ?, ?, ?)`;
-  db.run(query, [household_name, email, password, pin], function (err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
+// Login endpoint
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+  
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email and password are required' });
     }
-    res.status(201).json({ id: this.lastID });
+  
+    const query = `SELECT * FROM household WHERE email = ?`;
+    db.get(query, [email], (err, user) => {
+      if (err) {
+        return res.status(500).json({ error: err.message });
+      }
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Check if the provided password matches the stored password
+      if (user.password !== password) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+  
+      // Successful login
+      res.json({ message: 'Login successful', household_id: user.id });
+    });
   });
-});
+
+// Create a new household   Used to register
+app.post('/households', (req, res) => {
+    const { household_name, email, password, pin } = req.body;
+  
+    if (!household_name || !email || !password || !pin) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+  
+    const query = `INSERT INTO household (household_name, email, password, pin) VALUES (?, ?, ?, ?)`;
+    db.run(query, [household_name, email, password, pin], function (err) {
+      if (err) {
+        // Check if the error is due to the UNIQUE constraint
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(409).json({ error: 'Email already exists' });
+        }
+        return res.status(500).json({ error: err.message });
+      }
+      res.status(201).json({ id: this.lastID, message: 'Household registered successfully' });
+    });
+  });
 
 // Get all households
 app.get('/households', (req, res) => {
