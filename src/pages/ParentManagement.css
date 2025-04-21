@@ -1,0 +1,70 @@
+/* General Container Styling */
+.parent-management-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Styling */
+  .parent-management-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .parent-management-header h1 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .parent-management-header p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Section Styling */
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .section h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .action-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .action-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Footer Styling */
+  .parent-management-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .back-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    background-color: #5a6268;
+  }

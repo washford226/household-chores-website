@@ -1,0 +1,131 @@
+/* General Container Styling */
+.manage-children-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    overflow-y: auto; /* Enable scrolling */
+    height: 100vh; /* Full viewport height */
+  }
+  
+  /* Left Section Styling */
+  .left-section {
+    flex: 1;
+    max-width: 40%;
+  }
+  
+  .manage-children-header {
+    margin-bottom: 20px;
+  }
+  
+  .manage-children-header h1 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .manage-children-header p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .add-button, .back-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Right Section Styling */
+  .right-section {
+    flex: 2;
+    max-width: 60%;
+    overflow-x: auto; /* Enable horizontal scrolling for the table */
+  }
+  
+  .table-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .children-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .children-table th, .children-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #dddddd;
+  }
+  
+  .children-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .children-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .children-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .edit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Error Message Styling */
+  .error-message {
+    color: #ff4d4d;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+  }
