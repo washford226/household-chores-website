@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS chores (
   name TEXT NOT NULL,
   description TEXT,
   points INTEGER NOT NULL,
-  frequency TEXT NOT NULL,
+  frequency TEXT,
   recurring Boolean DEFAULT 0,
   recurring_frequency TEXT,
   recurring_details TEXT,
@@ -434,7 +434,7 @@ app.get('/chores/today', (req, res) => {
     FROM chore_assignments ca
     JOIN chores ch ON ca.chore_id = ch.id
     JOIN child c ON ca.child_id = c.id
-    WHERE ca.assigned_date = ? AND ch.household_id = ?
+    WHERE ca.assigned_date = ? AND ch.household_id = ? AND ca.Completed = 0
   `;
 
   db.all(query, [today, household_id], (err, rows) => {
